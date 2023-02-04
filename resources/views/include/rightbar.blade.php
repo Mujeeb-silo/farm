@@ -9,7 +9,7 @@
       <div class="display-flex">
         <div class="display-flex align-item-center flex-grow-1">
           <div class="avatar">
-            <img src="../../../app-assets/images/icon/pdf-image.png" width="24" height="30" alt="sample image">
+            <img src="{{asset('app-assets/images/icon/pdf-image.png')}}" width="24" height="30" alt="sample image">
           </div>
           <div class="member-info display-flex flex-column">
             <span class="black-text">Two new item submitted</span>

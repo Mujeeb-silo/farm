@@ -39,7 +39,9 @@ Route::group(['prefix'=>'admin','middleware' => ['auth', 'admin']], function () 
     Route::get('requirement', [RequirmentController::class, 'index']);
     Route::get('capacity', [CapacityController::class, 'dashboard']);
     Route::get('publish', [HomeController::class, 'dashboard']);
-    Route::get('partner', [PartnerController::class, 'dashboard']);
+    Route::get('partner', [PartnerController::class, 'index']);
+    Route::get('partner/add', [PartnerController::class, 'addPartner']);
+    Route::get('partner/list',[PartnerController::class,'listPartner']);
     Route::get('users', [UsersController::class, 'dashboard']);
     Route::get('email', [EmailController::class, 'dashboard']);
     Route::get('help', [HelpController::class, 'dashboard']);
@@ -54,4 +56,5 @@ Route::group(['prefix'=>'admin','middleware' => ['auth', 'admin']], function () 
 
 Route::group(['prefix'=>'partner','middleware' => ['auth', 'partner']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    
 });
