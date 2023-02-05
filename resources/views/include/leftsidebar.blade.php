@@ -5,7 +5,7 @@
 <div class="brand-sidebar">
   <h1 class="logo-wrapper">
     <a class="brand-logo darken-1" href="index.html">
-      <img class="hide-on-med-and-down " src="{{asset('app-assets/images/logo/materialize-logo.png" alt="materialize logo')}}" />
+      <img class="hide-on-med-and-down " src="{{asset('app-assets/images/logo/materialize-logo.png')}}" alt="materialize logo" />
       <img class="show-on-medium-and-down hide-on-med-and-up" src="{{asset('app-assets/images/logo/materialize-logo-color.png')}}" alt="materialize logo" />
       <span class="logo-text hide-on-med-and-down">Matrix Farm</span>
     </a>
@@ -43,7 +43,7 @@
   <li class="bold">
     <a class="waves-effect waves-cyan " href="{{url($prefix.'/partner')}}">
       <i class="material-icons">format_list_bulleted</i>
-      <span class="menu-title" data-i18n="Kanban">Partmer</span>
+      <span class="menu-title" data-i18n="Kanban">Partner</span>
     </a>
   </li>
   <li class="bold">
