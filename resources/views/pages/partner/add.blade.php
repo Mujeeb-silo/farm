@@ -1,3 +1,4 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 @extends('layouts.app') 
  @section('content') 
  @php
@@ -58,7 +59,8 @@
                         <button class="nav-link" id="evulation-tab" data-bs-toggle="tab" data-bs-target="#evulation" type="button" role="tab" aria-controls="contact" aria-selected="false">Evulation</button>
                       </li>
                     </ul>
-                    <form id="req_form" class="form" autocomplete="off" enctype="multipart/form-data" method="post" action="{{url($prefix.'/requirement/save')}}" novalidate> 
+                    <form id="req_form" class="form" autocomplete="off" enctype="multipart/form-data" method="post" action="{{url($prefix.'/partner/save')}}" novalidate> 
+                      @csrf
                       <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="company-detail" role="tabpanel" aria-labelledby="home-tab">
                           <div class="row">
@@ -141,7 +143,7 @@
                               <label for="email">Email *</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="mobile" name="mobile" class="required" required  type="url" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="mobile" name="mobile" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="mobile">Mobile *</label>
                             </div>
@@ -153,12 +155,12 @@
                               <label for="designation"> Designation *</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="password" name="password" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="password" name="password" class="required" required  type="password" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="password">Password *</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="conf_password" name="conf_password" class="required" required  type="url" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="conf_password" name="conf_password" class="required" required  type="password" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="conf_password">Confirm Password *</label>
                             </div>
@@ -215,7 +217,7 @@
                               </div>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="gst_no" name="gst_no" class="required" required  type="url" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="gst_no" name="gst_no" class="required" required  type="number" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="gst_no">GST NO </label>
                             </div>
@@ -236,7 +238,7 @@
                               <label for="bussness_account_no">Bussness Account No *</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="bank_name" name="bank_name" class="required" required  type="url" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="bank_name" name="bank_name" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="bank_name">Bank Name *</label>
                             </div>
@@ -253,7 +255,7 @@
                               <label for="back_address">Bank Address *</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="swift_code" name="swift_code" class="required" required  type="url" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="swift_code" name="swift_code" class="required" required  type="number" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="swift_code">Swift Code *</label>
                             </div>
@@ -311,12 +313,12 @@
                               <label>NDA Status</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="date_of_nda" name="date_of_nda" class="required datepicker" required  type="url" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="date_of_nda" name="date_of_nda" class="required datepicker" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="date_of_nda">Date of NDA </label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="end_date" name="end_date" class="required datepicker" required  type="url" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="end_date" name="end_date" class="required datepicker" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="end_date">End Date </label>
                             </div>
@@ -353,7 +355,7 @@
                               <label for="weakness">Weakness </label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="no_of_employee" name="no_of_employee" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="no_of_employee" name="no_of_employee" class="required" required  type="number" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
                               <label for="no_of_employee">No. of Employee </label>
                             </div>
@@ -651,6 +653,7 @@ function checkValid()
     $('#row-'+idVal).remove();
   }
    $('.datepicker').datepicker();
-  </script>
+  </script>  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 @endsection  
 @endsection
