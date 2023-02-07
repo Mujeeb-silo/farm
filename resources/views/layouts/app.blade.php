@@ -5,7 +5,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+    
 
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/vendors.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/animate-css/animate.css')}}">
@@ -28,7 +28,6 @@
     @yield('content')
     
     @include('include.footer')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{asset('app-assets/js/vendors.min.js')}}"></script>
     <!-- <script src="{{asset('app-assets/vendors/chartjs/chart.min.js')}}"></script>
