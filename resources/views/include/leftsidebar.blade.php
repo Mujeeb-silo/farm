@@ -4,7 +4,7 @@
 <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-dark gradient-45deg-deep-purple-blue sidenav-gradient sidenav-active-rounded">
 <div class="brand-sidebar">
   <h1 class="logo-wrapper">
-    <a class="brand-logo darken-1" href="index.html">
+    <a class="brand-logo darken-1" href="{{route('/')}}">
       <img class="hide-on-med-and-down " src="{{asset('app-assets/images/logo/materialize-logo.png')}}" alt="materialize logo" />
       <img class="show-on-medium-and-down hide-on-med-and-up" src="{{asset('app-assets/images/logo/materialize-logo-color.png')}}" alt="materialize logo" />
       <span class="logo-text hide-on-med-and-down">Matrix Farm</span>
