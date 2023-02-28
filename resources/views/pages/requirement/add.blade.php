@@ -70,8 +70,8 @@
                             <option value="Shell">Shell</option>
                         </optgroup>
                       </select>
-                      <small class="errorTxt2"></small>
                       <label for="req_primaryskill">Primary Skills *</label>
+                      <small class="errorTxt2"></small>
                     </div>
                     <div class="input-field col m3 s12">
                       <select class="form-control required error" data-error=".errorTxt3" id="req_sskill" name="req_sskill[]" multiple="multiple">
@@ -86,19 +86,19 @@
                             <option value="Shell">Shell</option>
                         </optgroup>
                       </select>
-                      <small class="errorTxt3"></small>
                       <label for="req_secskill">Secondary Skills</label>
+                      <small class="errorTxt3"></small>
                     </div>
                   </div>
                   <div class="row">
-                    <label for="tiny">Requirement Description *</label>
+                    <label for="req_description">Requirement Description *</label>
                     <div id="full-container">
-                      <textarea id="tiny" name="req_description">@if(isset($req) && !empty($req)) {!! $req->description !!}  @endif</textarea>
+                      <textarea id="req_description" name="req_description">@if(isset($req) && !empty($req)) {!! $req->description !!}  @endif</textarea>
                     </div>
                   </div>
                   <div class="row mt-2">
                     <div class="input-field col m3 s12">
-                      <input id="req_qty" name="req_qty" type="text" class="required" @if(isset($req) && !empty($req)) value="{{$req->req_qty}}" @endif required>
+                      <input id="req_qty" name="req_qty" type="text" class="required" @if(isset($req) && !empty($req)) value="{{$req->req_qty}}" @endif required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                       <label for="req_qty">Requirement Quantity *</label>
                     </div>
                     <div class="input-field col m3 s12">
@@ -140,19 +140,19 @@
                   </div>
                   <div class="row mt-2">
                     <div class="input-field col m3 s12">
-                      <input id="req_cityname" name="req_cityname" type="text">
+                      <input id="req_cityname" name="req_cityname" type="text" @if(isset($req) && !empty($req)) value="{{$req->city}}" @endif>
                       <label for="req_cityname">City Name *</label>
                     </div>
                     <div class="input-field col m3 s12">
-                      <input id="req_projectname" name="req_projectname" type="text" @if(isset($req) && !empty($req)) value="{{$req->duration}}" @endif>
+                      <input id="req_projectname" name="req_projectname" type="text" @if(isset($req) && !empty($req)) value="{{$req->duration}}" @endif oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                       <label for="req_projectname">Project Duration (months) *</label>
                     </div>
                     <div class="input-field col m3 s12">
-                      <input id="req_minexp" name="req_minexp" type="text" @if(isset($req) && !empty($req)) value="{{$req->min_experience}}" @endif>
+                      <input id="req_minexp" name="req_minexp" type="text" @if(isset($req) && !empty($req)) value="{{$req->min_experience}}" @endif oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                       <label for="req_minexp">Min Exp. *</label>
                     </div>
                     <div class="input-field col m3 s12">
-                      <input id="req_maxexp" name="req_maxexp" type="text" @if(isset($req) && !empty($req)) value="{{$req->max_experience}}" @endif>
+                      <input id="req_maxexp" name="req_maxexp" type="text" @if(isset($req) && !empty($req)) value="{{$req->max_experience}}" @endif oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                       <label for="req_maxexp">Max Exp. *</label>
                     </div>
                   </div>
@@ -209,7 +209,7 @@
 </div>
 @section('custome-js')
   
-  <script src="https://cdn.tiny.cloud/1/o63xbmggjr6m9w70dwyg6oe5kkqcux4vvnvzaeid6hbazj3g/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/y5hy0yfk95gliwyz6v584b2xknx7ixy4alx1yws2hv90hswi/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js"></script>
   <script src="{{asset('app-assets/vendors/jquery-validation/jquery.validate.min.js')}}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
@@ -242,7 +242,7 @@
      $('#req_source').val("{{$req->source_partner}}").trigger('change');
     @endif
     tinymce.init({
-      selector: '#tiny',
+      selector: '#req_description',
       plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
       toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
       tinycomments_mode: 'embedded',
@@ -264,41 +264,51 @@
  
     $("body").on("click",".save",function()
     {
-          var _this = $(this);
-          var ftype=_this.data('action')
-          var btn_name=_this.data('btn')
-          $('#formtype').val(ftype)
-          checkValid()
-          if($("#req_form").valid())
-          {
-              _this.prop('disabled',true).text('Loading....');
-            
-              $("#req_form").ajaxForm({
-                dataType:'json',
-                success:function(response){
+      var _this = $(this);
+      var ftype=_this.data('action')
+      var btn_name=_this.data('btn')
+      $('#formtype').val(ftype)
+      checkValid()
+      if($("#req_form").valid())
+      {
+        let innerText = tinyMCE.activeEditor.getContent({format : 'raw'});
+        $("#req_description").val(innerText);
+        _this.prop('disabled',true).text('Loading....');
+      
+        $("#req_form").ajaxForm({
+          dataType:'json',
+          success:function(response){
 
-                  if(response.status)
-                  {
-                      notifications(response.msg,'success');
-                      setTimeout(function()
-                      {
-                       _this.prop('disabled',false).text(btn_name);   
-                       window.location.href="{{url($prefix.'/requirement')}}";
-                      },2000);
-                  }
-                  else
-                  {
-                    notifications(response.msg,'error');
-                  }
-                  _this.prop('disabled',false).text(btn_name);
-                }
-              }).submit();
-              
+            if(response.status)
+            {
+                notifications(response.msg,'success');
+                setTimeout(function()
+                {
+                  _this.prop('disabled',false).text(btn_name);   
+                  window.location.href="{{url($prefix.'/requirement')}}";
+                },2000);
+            }
+            else
+            {
+              if(!$.isEmptyObject(response.errors)){
+                $('.err').remove();
+                $.each(response.errors,function(index,item){
+                  console.log('index',index);
+                  console.log('item',item);
+                  $('#'+index).after(`<p class="materialize-red-text err">${item}</p>`)
+                });
+
+              }
+              notifications(response.msg,'error');
+            }
+            _this.prop('disabled',false).text(btn_name);
           }
+        }).submit();
+          
+      }
     }); 
 function checkValid()
-{
- 
+{ 
   $("#req_form").validate({
     ignore: 'input[type=hidden], .select2-input, .select2-focusser',
     rules: {
@@ -342,12 +352,11 @@ function checkValid()
       req_startdate: {
         required: true,
       },
-      req_upload: {
-        required: true,
+      @if(!isset($req) && empty($req))
+      req_upload:{
+        required : true,
       },
-      req_comments: {
-        required: true,
-      },
+      @endif
       req_source:{
         required:true
       }

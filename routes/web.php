@@ -50,9 +50,13 @@ Route::group(['prefix'=>'admin','middleware' => ['auth', 'admin']], function () 
     Route::get('requirement/edit/{id}', [RequirmentController::class, 'editRequirement']);
     Route::post('requirement/save', [RequirmentController::class, 'saveRequirement']);
     Route::match(array('GET', 'POST'),'requirement/get/list', [RequirmentController::class, 'listRequirement']);
+    Route::post('partner/save', [PartnerController::class, 'savePartner']);
     
-
+    
 });
+Route::get('/',[HomeController::class, 'dashboard'])->name('/')->middleware(['auth','admin']);
+
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::group(['prefix'=>'partner','middleware' => ['auth', 'partner']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');

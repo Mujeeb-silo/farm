@@ -61,6 +61,7 @@
                     </ul>
                     <form id="req_form" class="form" autocomplete="off" enctype="multipart/form-data" method="post" action="{{url($prefix.'/partner/save')}}" novalidate> 
                       @csrf
+                      <input type="hidden" id="save_type" name="save_type">
                       <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="company-detail" role="tabpanel" aria-labelledby="home-tab">
                           <div class="row">
@@ -100,27 +101,27 @@
                           <div class="append-input">
                             <div class="row">
                               <div class="input-field col m3 s12">
-                                <input id="address" name="address" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="address" name="address[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="address">Adderess </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="city" name="city" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="city" name="city[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="city">City </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="state" name="state" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="state" name="state[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="state">State </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="pin_code" name="pin_code" class="required" required  type="number" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="pin_code" name="pin_code[]" class="required" required  type="number" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="pin_code">Pin Code </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="country" name="country" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="country" name="country[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="country">Country </label>
                               </div>
@@ -133,19 +134,19 @@
                         <div class="tab-pane fade" id="partner-credentials" role="tabpanel" aria-labelledby="profile-tab">
                           <div class="row">
                             <div class="input-field col m3 s12">
-                              <input id="name" name="name" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="user_name" name="user_name" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
-                              <label for="name"> Name *</label>
+                              <label for="user_name"> Name *</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="email" name="email" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="login_email" name="login_email" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
-                              <label for="email">Email *</label>
+                              <label for="login_email">Email *</label>
                             </div>
                             <div class="input-field col m3 s12">
-                              <input id="mobile" name="mobile" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                              <input id="login_mobile" name="login_mobile" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                               <small class="errorTxt0"></small>
-                              <label for="mobile">Mobile *</label>
+                              <label for="login_mobile">Mobile *</label>
                             </div>
                           </div>
                           <div class="row">
@@ -170,27 +171,27 @@
                           <div id="contact-input-append">
                             <div class="row">
                               <div class="input-field col m3 s12">
-                                <input id="contact_person" name="contact_person" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="contact_person" name="contact_person[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="contact_person">Contact Person </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="contact_designation" name="contact_designation" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="contact_designation" name="contact_designation[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="contact_designation">Contact Designation </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="contact_mobile" name="contact_mobile" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="contact_mobile" name="contact_mobile[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="contact_mobile">Mobile </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="contact_email_id" name="contact_email_id" class="required" required  type="email" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="contact_email_id" name="contact_email_id[]" class="required" required  type="email" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="contact_email_id">Email Id</label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="contact_location" name="contact_location" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="contact_location" name="contact_location[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="contact_location">Location </label>
                               </div>
@@ -281,17 +282,17 @@
                           <div id="technical-input-append">
                             <div class="row">
                               <div class="input-field col m3 s12">
-                                <input id="core_technology" name="core_technology" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="core_technology" name="core_technology[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="core_technology">Core Technology </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="other_expertise" name="other_expertise" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="other_expertise" name="other_expertise[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="other_expertise">Other Expertise </label>
                               </div>
                               <div class="input-field col m3 s12">
-                                <input id="technology" name="technology" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+                                <input id="technology" name="technology[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
                                 <small class="errorTxt0"></small>
                                 <label for="technology">Technology </label>
                               </div>
@@ -304,7 +305,7 @@
                         <div class="tab-pane fade" id="nda" role="tabpanel" aria-labelledby="contact-tab">
                           <div class="row">
                             <div class="input-field col s12">
-                              <select name="">
+                              <select name="nda_status" id="nda_status">
                                 <option value="" >Choose your option</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -336,7 +337,7 @@
                         <div class="tab-pane fade" id="evulation" role="tabpanel" aria-labelledby="contact-tab">
                           <div class="row">
                             <div class="input-field col s12">
-                              <select name="">
+                              <select name="category" id="category">
                                 <option value="" >Category</option>
                                 <option value="1">Option 1</option>
                                 <option value="2">Option 2</option>
@@ -399,42 +400,7 @@
 
 
   <script type="text/javascript">
-    @if(isset($req) && !empty($req))
-
-      
-     $('#req_type').val("{{$req->request_type_id}}").trigger('change');
-     var pskill_id=[];
-     @if(json_decode($req->primary_skills)>0)
-       @foreach(json_decode($req->primary_skills) as $key=>$val)
-        pskill_id.push("{{$val}}")
-       @endforeach
-     @endif
-
-     var sskill_id=[];
-     @if(json_decode($req->primary_skills)>0)
-       @foreach(json_decode($req->secondary_skills) as $key=>$val)
-        sskill_id.push("{{$val}}")
-       @endforeach
-     @endif
-     $('#req_pskill').val(pskill_id).trigger('change');
-     $('#req_sskill').val(sskill_id).trigger('change');
-     
-     $('#req_industry').val("{{$req->industry}}").trigger('change');
-     $('#req_project_type').val("{{$req->project_type_id}}").trigger('change');
-     $('#req_worklocation').val("{{$req->work_location}}").trigger('change');
-     $('#req_source').val("{{$req->source_partner}}").trigger('change');
-    @endif
-    tinymce.init({
-      selector: '#tiny',
-      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-      tinycomments_mode: 'embedded',
-      tinycomments_author: 'Author name',
-      mergetags_list: [
-        { value: 'First.Name', title: 'First Name' },
-        { value: 'Email', title: 'Email' },
-      ]
-    });
+    
   
    $('select[required]').css({
       position: 'absolute',
@@ -450,8 +416,8 @@
           var _this = $(this);
           var ftype=_this.data('action')
           var btn_name=_this.data('btn')
-          $('#formtype').val(ftype)
-          checkValid()
+          $('#save_typez').val(ftype)
+          //checkValid()
           if($("#req_form").valid())
           {
               _this.prop('disabled',true).text('Loading....');
@@ -486,52 +452,88 @@ function checkValid()
     ignore: 'input[type=hidden], .select2-input, .select2-focusser',
     rules: {
       
-      req_title: {
+      company_name: {
         required: true,
       },
-      req_type: {
+      bussness: {
         required: true,
       },
-      req_pskill: {
+      website: {
         required: true,
       },
-      req_sskill: {
+      contact_name: {
         required: true,
       },
-      req_qty: {
+      contact_number: {
         required: true,
       },
-      req_industry: {
+      email_Id: {
         required: true,
       },
-      req_project_type: {
+      user_name: {
         required: true,
       },
-      req_worklocation: {
+      login_email: {
         required: true,
       },
-      req_cityname: {
+      login_mobile: {
         required: true,
       },
-      req_projectname: {
+      designation: {
         required: true,
       },
-      req_minexp: {
+      password: {
         required: true,
       },
-      req_maxexp: {
+      conf_password: {
         required: true,
       },
-      req_startdate: {
+      pan_no: {
         required: true,
       },
-      req_upload: {
+      gst_no: {
         required: true,
       },
-      req_comments: {
+      bussness_account_no: {
         required: true,
       },
-      req_source:{
+      bank_name:{
+        required:true
+      },
+      ifsc_code:{
+        required:true
+      },
+      back_address:{
+        required:true
+      },
+      swift_code:{
+        required:true
+      },
+      iban_number:{
+        required:true
+      },
+      date_of_nda:{
+        required:true
+      },
+      nda_status:{
+        required:true
+      },
+      end_date:{
+        required:true
+      },
+      category:{
+        required:true
+      },
+      strength:{
+        required:true
+      },
+      weakness:{
+        required:true
+      },
+      no_of_employee:{
+        required:true
+      },
+      turn_over:{
         required:true
       }
     },
@@ -556,27 +558,27 @@ function checkValid()
       $('.append-input').append(`
         <div class="row" id="row-${i}">
           <div class="input-field col m3 s12">
-            <input id="address${i}" name="address" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="address${i}" name="address[]" class="required" required  type="text" >
             <small class="errorTxt0"></small>
             <label for="address${i}">Adderess </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="city${i}" name="city" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="city${i}" name="city[]" class="required" required  type="text" >
             <small class="errorTxt0"></small>
             <label for="city${i}">City </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="state${i}" name="state" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="state${i}" name="state[]" class="required" required  type="text" >
             <small class="errorTxt0"></small>
             <label for="state${i}">State </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="pin_code${i}" name="pin_code" class="required" required  type="number" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="pin_code${i}" name="pin_code[]" class="required" required  type="number" >
             <small class="errorTxt0"></small>
             <label for="pin_code${i}">Pin Code </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="country${i}" name="country" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="country${i}" name="country[]" class="required" required  type="text" >
             <small class="errorTxt0"></small>
             <label for="country${i}">Country </label>
           </div>
@@ -591,27 +593,27 @@ function checkValid()
       $('#contact-input-append').append(`
         <div class="row" id="row-${i}">
           <div class="input-field col m3 s12">
-            <input id="contact_person${i}" name="contact_person" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="contact_person${i}" name="contact_person[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="contact_person${i}">Contact Person </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="contact_designation${i}" name="contact_designation" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="contact_designation${i}" name="contact_designation[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="contact_designation${i}">Contact Designation </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="contact_mobile${i}" name="contact_mobile" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="contact_mobile${i}" name="contact_mobile[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="contact_mobile${i}">Mobile </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="contact_email_id${i}" name="contact_email_id" class="required" required  type="email" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="contact_email_id${i}" name="contact_email_id[]" class="required" required  type="email" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="contact_email_id${i}">Email Id</label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="contact_location${i}" name="contact_location" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="contact_location${i}" name="contact_location[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="contact_location${i}">Location </label>
           </div>
@@ -626,17 +628,17 @@ function checkValid()
       $('#technical-input-append').append(`
         <div class="row" id="row-${i}">
           <div class="input-field col m3 s12">
-            <input id="core_technology${i}" name="core_technology" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="core_technology${i}" name="core_technology[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="core_technology${i}">Core Technology </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="other_expertise${i}" name="other_expertise" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="other_expertise${i}" name="other_expertise[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="other_expertise${i}">Other Expertise </label>
           </div>
           <div class="input-field col m3 s12">
-            <input id="technology${i}" name="technology" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
+            <input id="technology${i}" name="technology[]" class="required" required  type="text" @if(isset($req) && !empty($req)) value="{{$req->title}}"  @endif>
             <small class="errorTxt0"></small>
             <label for="technology${i}">Technology </label>
           </div>
